@@ -7,9 +7,13 @@ char sign(float &f)
 	return f < 0 ? '1' : '0';
 }
 
-string exponent(float &f)
+int exponent(int &f, float &fl)
 {
-	return 0;
+	int ret = 127;
+	if (fl > 1 || fl < -1) ret += f;
+	else if (fl < 1 && fl > -1) ret -= f;
+
+	return ret;
 }
 
 string binary(int &a)
@@ -35,7 +39,7 @@ string binfloat(float &f)
 
 	if (f < 0) num *= -1;
 
-	while (!((num-sum) < 0.0000001 && (num-sum) > -0.0000001)){
+	while (!((num-sum) < 0.00000001 && (num-sum) > -0.00000001)){
 		if ((sum+shift) > num) ret += '0';
 		else {
 			ret += '1';
@@ -54,8 +58,8 @@ int main(){
 	cout << "FLOATING POINT";
 	cout << "\n==============================\n\n";
 
-	float fl = 0.1f, flt = fl;
-	int integer = 0;
+	float fl = 1.1f, flt = fl;
+	int integer = 0, sum = 0;
 	string bin, temp;
 	cout << "Var fl = " << fl << "\n";
 
@@ -78,18 +82,28 @@ int main(){
 	string mts = "";
 
 	int len = bin.length();
-	for (int i = 1; i < len; i++) mts += bin[i];
+	if (fl > 1 || fl < -1) {
+		sum = len-1;
+		for (int i = 1; i < len; i++) mts += bin[i];
+	} else if (fl < 1 && fl > -1){
+		for (int i = 0; bin[i] != '1'; i++) sum = i+2;
+		for (int i = sum; i < len; i++) mts += bin[i];
+	}
 
-	int expo = 127;
+	int expo = exponent(sum, fl);
 	temp = binary(expo);
 	len = temp.length();
 	while (len++ < 8) exp += '0';
+	len = mts.length();
+	while (len++ < 23) mts += '0';
 	exp += temp;
 
 	cout << "IEEE 754 has 3 basic component\n";
 	cout << "Sign(fl) = " << s << "\n";
 	cout << "Exponent(fl) = " << exp << "\n";
 	cout << "Mantissa(fl) = " << mts << "\n";
+
+	cout << "\n\nBinary float(" << fl << "): " << s << " " << exp << " " << mts << "\n\n";
 
 	return 0;
 }
