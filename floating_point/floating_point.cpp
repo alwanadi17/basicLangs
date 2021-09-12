@@ -7,10 +7,10 @@ char sign(float &f)
 	return f < 0 ? '1' : '0';
 }
 
-int exponent(int &f, float &fl)
+int exponent(int &integer,int &f,float &fl)
 {
 	int ret = 127;
-	if (fl > 1 || fl < -1) ret += f;
+	if (fl > 1 || fl < -1) ret += integer-1;
 	else if (fl < 1 && fl > -1) ret -= f;
 
 	return ret;
@@ -58,7 +58,7 @@ int main(){
 	cout << "FLOATING POINT";
 	cout << "\n==============================\n\n";
 
-	float fl = 1.1f, flt = fl;
+	float fl = 2.2f, flt = fl;
 	int integer = 0, sum = 0;
 	string bin, temp;
 	cout << "Var fl = " << fl << "\n";
@@ -90,7 +90,7 @@ int main(){
 		for (int i = sum; i < len; i++) mts += bin[i];
 	}
 
-	int expo = exponent(sum, fl);
+	int expo = exponent(integer,sum,fl);
 	temp = binary(expo);
 	len = temp.length();
 	while (len++ < 8) exp += '0';
