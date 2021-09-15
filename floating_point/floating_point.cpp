@@ -10,7 +10,9 @@ char sign(float &f)
 int exponent(int &integer,int &f,float &fl)
 {
 	int ret = 127;
-	if (fl > 1 || fl < -1) ret += integer-1;
+	string bin = binary(integer);
+	int len = bin.length();
+	if (fl > 1 || fl < -1) ret += len-1;
 	else if (fl < 1 && fl > -1) ret -= f;
 
 	return ret;
