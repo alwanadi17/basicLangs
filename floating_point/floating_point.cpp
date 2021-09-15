@@ -7,17 +7,6 @@ char sign(float &f)
 	return f < 0 ? '1' : '0';
 }
 
-int exponent(int &integer,int &f,float &fl)
-{
-	int ret = 127;
-	string bin = binary(integer);
-	int len = bin.length();
-	if (fl > 1 || fl < -1) ret += len-1;
-	else if (fl < 1 && fl > -1) ret -= f;
-
-	return ret;
-}
-
 string binary(int &a)
 {
 	string ret, temp;
@@ -30,6 +19,17 @@ string binary(int &a)
 	int len = temp.length();
 
 	for (int i = len-1; i >= 0; i--) ret += temp[i];
+
+	return ret;
+}
+
+int exponent(int &integer,int &f,float &fl)
+{
+	int ret = 127;
+	string bin = binary(integer);
+	int len = bin.length();
+	if (fl > 1 || fl < -1) ret += len-1;
+	else if (fl < 1 && fl > -1) ret -= f;
 
 	return ret;
 }
