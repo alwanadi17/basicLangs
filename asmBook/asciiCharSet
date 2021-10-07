@@ -1,0 +1,10 @@
+ASCII Char Set
+
+ASCII stands for American Standard Code for Information Interchange
+
+Represented from one byte, devided into 4 groups of 32 character.
+At first group, form a special set of non-printing character called control character.
+At second group, comprise various punctuation symbols, special char, and numeric digits.
+At third group, reserved for upper case alphabetic char. The remaining codes hold various special symbols.
+at fourth group, reserved for lower case alphabetic char. The remaining codes hold special symbols, and one control character(delete).
+

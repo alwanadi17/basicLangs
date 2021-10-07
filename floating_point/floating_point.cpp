@@ -60,7 +60,9 @@ int main(){
 	cout << "FLOATING POINT";
 	cout << "\n==============================\n\n";
 
-	float fl = 2.2f, flt = fl;
+	float fl = 0;
+	cout << "input: "; cin >> fl;
+	float flt = fl;
 	int integer = 0, sum = 0;
 	string bin, temp;
 	cout << "Var fl = " << fl << "\n";
