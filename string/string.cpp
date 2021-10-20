@@ -4,7 +4,7 @@ using namespace std;
 
 int main(){
 
-	string str = "alwan\nammar", temp;
+	string str = "alwan\nadi", temp;
 	int i = 0;
 	cout << str << endl;
 

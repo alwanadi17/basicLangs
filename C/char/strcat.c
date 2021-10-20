@@ -9,6 +9,7 @@ int main () {
 	printf("\n=======================\n");
 
 	char *str = malloc(30); //allocating memory
+	size_t i = 0;
 
 	if (str == NULL) {
 		printf("memory not allocated");
@@ -20,9 +21,18 @@ int main () {
 	printf("%s\n",str);
 	printf("%c\n",*str); //still on the beginning
 
-	memset(str,0,30); //is this will interupt free()?
+	memset(str,0,30);
 
-	free(str);
+	strcat(str,"alwan");
+	while (*str != '\0') {
+		printf("%c ",*str);
+		*str++;
+	} //the pointer now is at \0
+
+	strcat(str,"hem");
+	printf("\n%c\n",*str); //output: h
+
+	free(str-5);
 
 	printf("\n=======================\n");
 	return 0;
@@ -30,3 +40,4 @@ int main () {
 
 
 //no memory leak
+//test running smoothly
