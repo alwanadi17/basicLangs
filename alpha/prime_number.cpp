@@ -2,13 +2,13 @@
 #include <cstdint>
 #include <cmath>
 
-bool isPrime(uint64_t a)
+bool isPrime(uint64_t n)
 {
-	for (uint32_t i = 3; i <= sqrt(a); i += 2) {
-		if (!(a%i))
-			return false;
+	for (uint32_t i = 3; i <= sqrt(n); i += 2) {
+		if (n%i == 0)
+			return 0;
 	}
-	return true;
+	return 1;
 }
 
 int main() {
@@ -24,12 +24,12 @@ int main() {
 
 	for (int a : primes) {
 		power = pow(2,a)-1;
-		isPrime(power);
+		printf("%d\n",isPrime(power));
 
-		if (isPrime)
-			printf("2^%u = %llu is Prime\n",a,power);
+		if (isPrime(power))
+			printf("2^%u = %lu is Prime\n",a,power);
 		else
-			printf("2^%u = %llu is Prime\n",a,power);
+			printf("2^%u = %lu is NOT Prime\n",a,power);
 	}
 
 	return 0;
