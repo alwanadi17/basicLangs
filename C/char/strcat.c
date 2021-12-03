@@ -26,13 +26,14 @@ int main () {
 	strcat(str,"alwan");
 	while (*str != '\0') {
 		printf("%c ",*str);
-		*str++;
+		str++;
 	} //the pointer now is at \0
 
 	strcat(str,"hem");
 	printf("\n%c\n",*str); //output: h
 
-	free(str-5);
+	str = str-5;
+	free(str);
 
 	printf("\n=======================\n");
 	return 0;

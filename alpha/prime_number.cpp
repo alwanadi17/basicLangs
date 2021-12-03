@@ -2,9 +2,9 @@
 #include <cstdint>
 #include <cmath>
 
-uint32_t isPrime(uint64_t n)
+uint64_t isPrime(uint64_t n)
 {
-	for (uint32_t i = 3; i <= sqrt(n); i += 2) {
+	for (uint64_t i = 3; i <= sqrt(n); i += 2) {
 		if (!(n%i))
 			return i;
 	}
@@ -21,16 +21,16 @@ int main() {
 
 	uint8_t primes[] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53};
 	uint64_t power = 0;
-	uint32_t div = 0;
+	uint64_t div = 0;
 
-	for (int a : primes) {
-		power = pow(2,a)-1;
+	for (uint8_t i = 2; i <= 64; i++) {
+		power = pow(2,i)-1;
 
 		div = isPrime(power);
 		if (div == 0)
-			printf("2^%u = %lu is Prime\n",a,power);
+			printf("2^%u = %lu is Prime\n",i,power);
 		else if (div > 0)
-			printf("2^%u = %lu is NOT Prime and can be devided by %u\n",a,power,div);
+			printf("2^%u = %lu is NOT Prime and can be devided by %lu\n",i,power,div);
 	}
 
 	return 0;
