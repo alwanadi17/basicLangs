@@ -1,0 +1,52 @@
+#include "include.h"
+#include "book.h"
+
+int main() {
+	std::cout << "Bibliography book using Chicago style" << std::endl;
+
+	book foo;
+	char menu;
+
+	foo.inputData();
+
+	do {
+		foo.getData();
+		std::cout << std::endl;
+		std::cout << "Is there anything you want to edit?" << std::endl
+			  << "1. Title" << std::endl
+			  << "2. Writer" << std::endl
+			  << "3. Publisher" << std::endl
+			  << "4. Place published" << std::endl
+			  << "5. Release year" << std::endl
+			  << "0. Done" << std::endl
+			  << std::endl << "Input menu: ";
+		std::cin >> menu;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+		switch(menu) {
+			case '1':
+				foo.inputTitle();
+				break;
+			case '2':
+				foo.inputWriter();
+				break;
+			case '3':
+				foo.inputPublish();
+				break;
+			case '4':
+				foo.inputPlace();
+				break;
+			case '5':
+				foo.inputRls();
+				break;
+			case '0':
+				break;
+			default:
+				std::cerr << "Wrong input" << std::endl << std::endl;
+		}
+	} while (menu != '0');
+
+	std::cout << std::endl << foo.gen() << std::endl;
+
+	return 0;
+}

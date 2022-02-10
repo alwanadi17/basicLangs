@@ -13,20 +13,13 @@ public:
 //	test(const test &obj) : test(obj.x, obj.y) { }
 
 	test operator ++ (int) {
-		test tmp;
-
-		tmp.x = x++;
-		tmp.y = y++;
-
-		return tmp;
+		this->x++;
+		this->y++;
+		return *this;
 	}
 
 	test operator ++ () {
-		test tmp;
-
-		tmp.x = ++x;
-		tmp.y = ++y;
-
+		test tmp(++x,++y);
 		return tmp;
 	}
 
@@ -35,6 +28,8 @@ public:
 		this->y += obj.y;
 		return *this;
 	}
+
+	test operator + (
 
 	void print() {
 		std::cout << "[" << x << "," << y << "]" << std::endl;
