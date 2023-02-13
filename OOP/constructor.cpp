@@ -29,8 +29,6 @@ public:
 		return *this;
 	}
 
-	test operator + (
-
 	void print() {
 		std::cout << "[" << x << "," << y << "]" << std::endl;
 	}
