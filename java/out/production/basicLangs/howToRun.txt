@@ -1,8 +1,0 @@
-First, make a public class with the same name as the filename, then make the
-main method inside the class. It will be the door of the program.
-
-How to compile
-javac <filename.java>
-
-How to run
-java <filename>

@@ -1,7 +1,0 @@
-//At the first line, public means the class can be accessed by public. "public"
-//keyword can be omitted due to class defined as public automatically.
-
-according to this article, it is a different case that leading to security material
-https://stackoverflow.com/questions/16779245/what-is-the-difference-between-public-class-and-just-class
-
-Then, main method at line 4, which it called method for a function that are exists inside a class, is the door of the program.
