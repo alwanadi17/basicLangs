@@ -13,7 +13,7 @@ public class Main {
 
         //read write file
         //byte stream
-        int c = inByte.read();
+        int c = inByte.read(); //c is in byte
         while(c != -1) {
             System.out.print((char)c);
             outByte.write(c); //same results with char stream but error at System.out.print
