@@ -368,8 +368,10 @@ public class Main {
         int entryCount = 0;
 
         String penulis, judul, tahun, penerbit, editedLine = "";
-        boolean isUpdate = false;
+        boolean updateLastEntry = false;
         while (line != null) {
+            boolean isUpdate = false;
+            String tmpLine = line;
             entryCount++;
 
             if (entryCount == updateEntry) {
@@ -392,15 +394,18 @@ public class Main {
                 }
                 if (isChangeData("Penulis")) {
                     System.out.print("Penulis             : ");
-                    penulis = terminalInput.nextLine();
+                    penulis = terminalInput.next();
+                    penulis = penulis + terminalInput.nextLine();
                 }
                 if (isChangeData("Penerbit")) {
                     System.out.print("Penerbit            : ");
                     penerbit = terminalInput.nextLine();
+                    penerbit = penerbit + terminalInput.nextLine();
                 }
                 if (isChangeData("Judul")) {
                     System.out.print("Judul               : ");
-                    judul = terminalInput.nextLine();
+                    judul = terminalInput.next();
+                    judul = judul + terminalInput.nextLine();
                 }
 
                 //check data di database
@@ -420,9 +425,11 @@ public class Main {
                     System.out.println("Penerbit        : " + penerbit);
                     System.out.println("Judul           : " + judul);
                     editedLine = primaryKey + "," + keywords[0];
+                    updateLastEntry = true;
                 }
-
-                isUpdate = getYesNo("Apakah anda ingin menyimpan perubahan");
+                if (!isExist) {
+                    isUpdate = getYesNo("Apakah anda ingin menyimpan perubahan");
+                }
             }
             if (isUpdate) {
                 System.out.println("Data berhasil diubah!");
@@ -435,7 +442,7 @@ public class Main {
         }
 
         //put edited data to the last entry
-        if (isUpdate) {
+        if (updateLastEntry) {
             tempBuffer.write(editedLine);
             tempBuffer.newLine();
         }
@@ -450,9 +457,6 @@ public class Main {
 
         boolean delete = db.delete();
         boolean rename = temp.renameTo(db);
-
-        System.out.println(delete);
-        System.out.println(rename);
 
         printBooks();
     }
