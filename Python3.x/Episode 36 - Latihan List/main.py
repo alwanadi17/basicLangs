@@ -35,33 +35,49 @@ def addBook():
     print("="*20)
     print("ADD BOOK")
 
+    bookList = []
     while True:
 
         title = input("Judul: ")
         author = input("Penulis: ")
 
         newBook = [title, author]
+        bookList.append(newBook)
 
-        print(f"{title}\t | {author}")
+        for i,book in enumerate(bookList):
+            print(f"{i+1}| {book[0]}\t | {book[1]}")
 
-        isClose = input("Apakah ingin simpan dan keluar? (y/n): ")
+        isClose = input("Apakah ingin keluar? (y/n): ")
         if isClose == 'y':
             break
 
-    return newBook
+    return bookList
 
 def saveBook(bookList, db):
     cur = db.cursor()
 
     for book in bookList:
-        sql = ("INSERT INTO books(title, author) VALUES (%s, %s)")
+        sql = ("INSERT INTO books(title, author) VALUES(%s,%s)")
         val = (book[0], book[1])
 
         cur.execute(sql, val)
 
     db.commit()
+    viewBook(db)
+    cur.close()
 
-    print(cur.rowcount, "record inserted.")
+def viewBook(db):
+    print()
+    print("="*20)
+    print("View BOOK")
+
+    cur = db.cursor()
+
+    cur.execute("SELECT * FROM books")
+
+    for i,book in enumerate(cur):
+        print(f"{i+1}| {book[0]}\t | {book[1]}")
+
     cur.close()
 
 def userInput():
@@ -82,12 +98,14 @@ def main():
 
         if (userIn == 1):
             saveBook(addBook(), db)
-        if (userIn == 2):
+        elif (userIn == 2):
+            viewBook(db)
+        elif (userIn == 3):
             pass
-        if (userIn == 3):
+        elif (userIn == 4):
             pass
-        if (userIn == 4):
-            pass
+        else:
+            print("Masukkan input yang tersedia!")
 
     db.close()
 
