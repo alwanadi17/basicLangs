@@ -45,7 +45,7 @@ def addBook():
         bookList.append(newBook)
 
         for i,book in enumerate(bookList):
-            print(f"{i+1}| {book[0]}\t | {book[1]}")
+            print(f"{i+1}| {book[0]}\t\t\t | {book[1]}")
 
         isClose = input("Apakah ingin keluar? (y/n): ")
         if isClose == 'y':
@@ -67,9 +67,6 @@ def saveBook(bookList, db):
     cur.close()
 
 def viewBook(db):
-    print()
-    print("="*20)
-    print("View BOOK")
 
     cur = db.cursor()
 
@@ -79,6 +76,9 @@ def viewBook(db):
         print(f"{i+1}| {book[0]}\t | {book[1]}")
 
     cur.close()
+
+def deleteBook(db):
+    viewBook(db)
 
 def userInput():
     n = int
@@ -99,10 +99,15 @@ def main():
         if (userIn == 1):
             saveBook(addBook(), db)
         elif (userIn == 2):
+            print()
+            print("="*20)
+            print("View BOOK")
             viewBook(db)
         elif (userIn == 3):
             pass
         elif (userIn == 4):
+            deleteBook(db)
+        elif (userIn == 0):
             pass
         else:
             print("Masukkan input yang tersedia!")
